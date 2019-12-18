@@ -16,3 +16,5 @@ It is currently highly experimental and we would advise you not to use this in p
 See [godoc](http://godoc.org/github.com/seams-cms/go-seams-cms-sdk)
 
 ## Usage
+
+See the [examples](https://github.com/seams-cms/go-seams-cms-sdk/tree/master/examples) directory for usage examples.
