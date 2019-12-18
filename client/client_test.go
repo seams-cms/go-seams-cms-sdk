@@ -17,9 +17,9 @@ func TestNewWithConfig(t *testing.T) {
 	};
 	c := NewWithConfig(config)
 
-	assert.Equal(t, c.apiKey, "api-key")
-	assert.Equal(t, c.workspace, "workspace")
-	assert.Equal(t, c.baseUrl, "https://base.url/api")
+	assert.Equal(t, c.ApiKey, "api-key")
+	assert.Equal(t, c.Workspace, "workspace")
+	assert.Equal(t, c.BaseUrl, "https://base.url/api")
 }
 
 func TestCreateRequest(t *testing.T) {

@@ -14,7 +14,6 @@ const (
 
 type ChangeApi struct {
 	seamsClient *client.Client
-	baseUrl 	string
 }
 
 type Configuration struct {

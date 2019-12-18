@@ -16,10 +16,10 @@ import (
 const UserAgent = "Go-seams-cms-sdk/v1.0"
 
 type Client struct {
-	workspace string
-	apiKey    string
-	baseUrl   string
-	http      *http.Client
+	Workspace string
+	ApiKey    string
+	BaseUrl   string
+	Http      *http.Client
 }
 
 type Configuration struct {
@@ -38,10 +38,10 @@ func NewWithConfig(config Configuration) *Client {
 	httpClient := &http.Client{Transport: transport}
 
 	return &Client{
-		apiKey:    config.ApiKey,
-		workspace: config.Workspace,
-		baseUrl:   config.BaseUrl,
-		http:      httpClient,
+		ApiKey:    config.ApiKey,
+		Workspace: config.Workspace,
+		BaseUrl:   config.BaseUrl,
+		Http:      httpClient,
 	}
 }
 
@@ -51,7 +51,7 @@ func (c Client) Fetch(method string, url string, body io.Reader, v interface{}) 
 		return err
 	}
 
-	res, err := c.http.Do(req)
+	res, err := c.Http.Do(req)
 	if err != nil {
 		return err
 	}
@@ -68,7 +68,7 @@ func (c Client) createRequest(method string, url string, body io.Reader) (*http.
 	if url[0] != '/' {
 		url = "/" + url
 	}
-	url = c.baseUrl + "/workspace/" + c.workspace + url
+	url = c.BaseUrl + "/workspace/" + c.Workspace + url
 
 	req, err := http.NewRequest(method, url, body)
 	if err != nil {
@@ -76,7 +76,7 @@ func (c Client) createRequest(method string, url string, body io.Reader) (*http.
 	}
 
 	req.Header.Add("User-Agent", UserAgent)
-	req.Header.Add("Authorization", "Bearer "+c.apiKey)
+	req.Header.Add("Authorization", "Bearer "+c.ApiKey)
 
 	return req, nil
 }

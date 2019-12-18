@@ -16,7 +16,6 @@ const (
 
 type DeliveryApi struct {
 	seamsClient *client.Client
-	baseUrl     string
 }
 
 type Configuration struct {
