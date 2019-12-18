@@ -200,8 +200,11 @@ func (c *Content) GetLocaleReferences(locale string) ([]ContentEntry, error) {
 
 // Fetches a collection of content entries based on content type. Can use nil as filter if no filtering is needed
 func (api *DeliveryApi) GetContentCollection(contentType string, filter *Filter) (*ContentCollection, error) {
+	qs := filter.createQueryString()
+	url := fmt.Sprintf("/type/%s/entries?%s", contentType, qs)
+
 	coll := ContentCollection{}
-	err := api.seamsClient.Fetch("GET", "/type/"+contentType+"/entries", nil, &coll)
+	err := api.seamsClient.Fetch("GET", url, nil, &coll)
 	if err != nil {
 		return nil, err
 	}

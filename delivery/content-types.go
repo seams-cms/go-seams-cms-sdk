@@ -9,7 +9,7 @@ type ContentTypeField struct {
 	ApiId       string `json:"api_id"`
 	Name        string `json:"name"`
 	Description string `json:"description"`
-	IsLocalized bool   `json:"is_localized"`
+	Localized   bool   `json:"is_localized"`
 }
 
 type ContentType struct {
@@ -33,8 +33,11 @@ type ContentTypeCollection struct {
 
 // Fetches a collection of content types. Can use nil as filter if no filtering is needed
 func (api *DeliveryApi) GetContentTypeCollection(filter *Filter) (*ContentTypeCollection, error) {
+	qs := filter.createQueryString()
+	url := fmt.Sprintf("/types?%s", qs)
+
 	coll := ContentTypeCollection{}
-	err := api.seamsClient.Fetch("GET", "/types", nil, &coll)
+	err := api.seamsClient.Fetch("GET", url, nil, &coll)
 	if err != nil {
 		return nil, err
 	}
@@ -43,9 +46,12 @@ func (api *DeliveryApi) GetContentTypeCollection(filter *Filter) (*ContentTypeCo
 }
 
 // Fetches the given content type details
-func (api *DeliveryApi) GetContentType(contentType string) (*ContentType, error) {
+func (api *DeliveryApi) GetContentType(contentType string, filter *Filter) (*ContentType, error) {
+	qs := filter.createQueryString()
+	url := fmt.Sprintf("/type/%s?%s", contentType, qs)
+
 	ct := ContentType{}
-	err := api.seamsClient.Fetch("GET", "/type/"+contentType, nil, &ct)
+	err := api.seamsClient.Fetch("GET", url, nil, &ct)
 	if err != nil {
 		return nil, err
 	}

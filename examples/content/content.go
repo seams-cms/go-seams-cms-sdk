@@ -28,7 +28,7 @@ func main() {
 }
 
 func displayContentTypeDetails(client *delivery.DeliveryApi, contentType string) {
-	ct, err := client.GetContentType(contentType)
+	ct, err := client.GetContentType(contentType, nil)
 	if err != nil {
 		panic(err)
 	}

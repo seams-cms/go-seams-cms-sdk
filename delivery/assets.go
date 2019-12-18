@@ -31,8 +31,11 @@ type AssetCollection struct {
 
 // Fetches assets. Can use nil as filter if no filtering is needed
 func (api *DeliveryApi) GetAssetCollection(filter *Filter) (*AssetCollection, error) {
+	qs := filter.createQueryString()
+	url := fmt.Sprintf("/assets?%s", qs)
+
 	coll := AssetCollection{}
-	err := api.seamsClient.Fetch("GET", "/assets", nil, &coll)
+	err := api.seamsClient.Fetch("GET", url, nil, &coll)
 	if err != nil {
 		return nil, err
 	}
