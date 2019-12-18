@@ -45,7 +45,7 @@ func NewWithConfig(config Configuration) *Client {
 	}
 }
 
-func (c Client) Fetch(method string, url string, body io.Reader, v interface{}) error {
+func (c *Client) Fetch(method string, url string, body io.Reader, v interface{}) error {
 	req, err := c.createRequest(method, url, body)
 	if err != nil {
 		return err
@@ -64,7 +64,7 @@ func (c Client) Fetch(method string, url string, body io.Reader, v interface{}) 
 	return json.Unmarshal(data, v)
 }
 
-func (c Client) createRequest(method string, url string, body io.Reader) (*http.Request, error) {
+func (c *Client) createRequest(method string, url string, body io.Reader) (*http.Request, error) {
 	if url[0] != '/' {
 		url = "/" + url
 	}
