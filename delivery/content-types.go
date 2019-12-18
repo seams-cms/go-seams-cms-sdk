@@ -4,6 +4,8 @@
 
 package delivery
 
+import "fmt"
+
 type ContentTypeField struct {
 	FieldType   string `json:"field_type"`
 	ApiId       string `json:"api_id"`

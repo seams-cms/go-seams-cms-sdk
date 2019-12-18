@@ -4,48 +4,29 @@
 
 package delivery
 
-import "testing"
+import (
+	"github.com/stretchr/testify/assert"
+	"testing"
+)
 
 func TestNewFilter_withoutNil(t *testing.T) {
 	sort := "foo"
 	query := "bar"
 	f := NewFilter(5, 10, &sort, &query)
 
-	if (f.Offset != 5) {
-		t.Errorf("offset %d, want %d", f.Offset, 5)
-	}
-
-	if (f.Limit != 10) {
-		t.Errorf("limit %d, want %d", f.Limit, 10)
-	}
-
-	if (*f.Sort != "foo") {
-		t.Errorf("sort %s, want %s", *f.Sort, "foo")
-	}
-
-	if (*f.Query != "bar") {
-		t.Errorf("query %s, want %s", *f.Query, "bar")
-	}
+	assert.Equal(t, 5, f.Offset)
+	assert.Equal(t, 10, f.Limit)
+	assert.Equal(t, "foo", *f.Sort)
+	assert.Equal(t, "bar", *f.Query)
 }
 
 func TestNewFilter_withNil(t *testing.T) {
 	f := NewFilter(5, 10, nil, nil)
 
-	if (f.Offset != 5) {
-		t.Errorf("offset %d, want %d", f.Offset, 5)
-	}
-
-	if (f.Limit != 10) {
-		t.Errorf("limit %d, want %d", f.Limit, 10)
-	}
-
-	if (f.Sort != nil) {
-		t.Errorf("sort needs to be nil")
-	}
-
-	if (f.Query != nil) {
-		t.Errorf("query needs to be nil")
-	}
+	assert.Equal(t, 5, f.Offset)
+	assert.Equal(t, 10, f.Limit)
+	assert.Nil(t, f.Sort)
+	assert.Nil(t, f.Query)
 }
 
 func TestNewFilter(t *testing.T) {
@@ -76,10 +57,6 @@ func TestNewFilter(t *testing.T) {
 		}
 
 		f := NewFilter(data.Offset, data.Limit, sort, query)
-
-		qs := f.createQueryString()
-		if (qs != data.Result) {
-			t.Errorf("query string %s, want %s", qs, data.Result)
-		}
+		assert.Equal(t, data.Result, f.createQueryString())
 	}
 }
