@@ -31,11 +31,11 @@ func TestNewFilter_withNil(t *testing.T) {
 
 func TestNewFilter(t *testing.T) {
 	type providerData struct {
-		Offset	int
-		Limit	int
-		Sort	string
-		Query	string
-		Result	string
+		Offset int
+		Limit  int
+		Sort   string
+		Query  string
+		Result string
 	}
 
 	provider := []providerData{
@@ -46,7 +46,7 @@ func TestNewFilter(t *testing.T) {
 		{0, 10, "foo=asc", "c.f.d eq \"foo\" and c.d.a contains foobar", "offset=0&limit=10&sort=foo%3Dasc&query=c.f.d+eq+%22foo%22+and+c.d.a+contains+foobar"},
 	}
 
-	for _, data := range(provider) {
+	for _, data := range provider {
 		var sort *string = nil
 		if data.Sort != "" {
 			sort = &data.Sort

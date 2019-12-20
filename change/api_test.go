@@ -9,7 +9,6 @@ import (
 	"testing"
 )
 
-
 func TestNewClient(t *testing.T) {
 	api := NewClient("space", "api-key")
 

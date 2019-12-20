@@ -14,7 +14,7 @@ func TestNewWithConfig(t *testing.T) {
 		"workspace",
 		"api-key",
 		"https://base.url/api",
-	};
+	}
 	c := NewWithConfig(config)
 
 	assert.Equal(t, c.ApiKey, "api-key")
@@ -27,7 +27,7 @@ func TestCreateRequest(t *testing.T) {
 		"myspace",
 		"api-key",
 		"https://base.url/api",
-	};
+	}
 	client := NewWithConfig(config)
 
 	req, _ := client.createRequest("GET", "foobar", nil)

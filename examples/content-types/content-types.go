@@ -1,4 +1,4 @@
-package content_types
+package main
 
 import (
 	"flag"

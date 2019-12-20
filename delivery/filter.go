@@ -28,7 +28,7 @@ func NewFilter(offset int, limit int, sort *string, query *string) *Filter {
 }
 
 // Returns a query string snippet that can be used for calling the API
-func (f *Filter) createQueryString() (string) {
+func (f *Filter) createQueryString() string {
 	items := []string{
 		fmt.Sprintf("offset=%d", f.Offset),
 		fmt.Sprintf("limit=%d", f.Limit),
