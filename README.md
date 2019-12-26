@@ -2,6 +2,7 @@
 
 [![GoDoc](https://godoc.org/github.com/seams-cms/go-seams-cms-sdk?status.svg)](https://godoc.org/github.com/seams-cms/go-seams-cms-sdk)
 [![Build Status](https://travis-ci.org/seams-cms/go-seams-cms-sdk.svg)](https://travis-ci.org/seams-cms/go-seams-cms-sdk)
+[![Go Report Card](https://goreportcard.com/badge/github.com/seams-cms/go-seams-cms-sdk)](https://goreportcard.com/report/github.com/seams-cms/go-seams-cms-sdk)
 
 ```Go
 import "github.com/seams-cms/go-seams-cms-sdk"
