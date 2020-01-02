@@ -40,6 +40,7 @@ type Builder struct {
 	Workspace string
 	Path      string
 	CDN       bool
+	Webp      bool
 	Filters   []string
 }
 
@@ -49,6 +50,7 @@ func Build(workspace string, path string) *Builder {
 		workspace,
 		path,
 		true,
+		false,
 		[]string{},
 	}
 
@@ -64,6 +66,12 @@ func (b *Builder) SkipCDN() *Builder {
 // UseCDN when you want to use the CDN (default)
 func (b *Builder) UseCDN() *Builder {
 	b.CDN = true
+	return b
+}
+
+// AsWebp will return the image in WebP format
+func (b *Builder) AsWebp() *Builder {
+	b.Webp = true
 	return b
 }
 
@@ -125,6 +133,9 @@ func (b *Builder) Width(width int) *Builder {
 // Builds and returns the actual URL for this image
 func (b *Builder) Url() string {
 	url := fmt.Sprintf("%s/%s", b.Workspace, b.Path)
+	if (b.Webp) {
+		url = url + ".webp"
+	}
 
 	if len(b.Filters) > 0 {
 		sort.Strings(b.Filters)
