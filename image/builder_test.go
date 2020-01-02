@@ -30,4 +30,6 @@ func TestNewClient(t *testing.T) {
 	url = Build("foobar", "path.jpg").Flip(FLIP_HORIZONTAL).Gray().Height(100).Rotate(104).Negate().Width(10).Url()
 	assert.Equal(t, "https://assets.seams-cms.com/p/flip(horizontal)/gray()/height(100)/negate()/rotate(104)/width(10)/foobar/path.jpg", url)
 
+	url = Build("foobar", "path.jpg").AsWebp().Url()
+	assert.Equal(t, "https://assets.seams-cms.com/foobar/path.jpg.webp", url)
 }
